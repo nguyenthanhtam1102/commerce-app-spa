@@ -1,0 +1,13 @@
+{
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "products": "Products",
+    "categories": "Categories",
+    "discounts": "Discounts",
+    "settings": "Settings",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "billing": "Billing",
+    "vietnamese": "Vietnamese",
+    "english": "English"
+}

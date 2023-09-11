@@ -1,0 +1,34 @@
+@import '../../../../themes/LightTheme.scss';
+@import '../../../../themes/DarkTheme.scss';
+
+.product-filters {
+    .product-filters-container {
+        background-color: var(--filter-panel-bg);
+        border-right: 1px solid var(--filter-panel-border);
+    }
+
+    .btn-view-list, .btn-view-grid, .btn-filter, .btn-sort {
+        border: 1px solid var(--input-border-color);
+    }
+
+    .sort-options {
+        border: 1px solid var(--input-border-color);
+    
+        .sort-options-panel {
+            border: 1px solid var(--input-border-color);
+            background-color: var(--input-bg);
+            color: var(--dropdown-link-color);
+
+            .sort-option-item {
+                & + .selected {
+                    color: var(--dropdown-link-active-color);
+                }
+
+                &:hover {
+                    background-color: var(--dropdown-hover-bg);
+                    color: var(--dropdown-link-hover-color);
+                }
+            }
+        }
+    }
+}

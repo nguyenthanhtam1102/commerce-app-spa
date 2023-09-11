@@ -1,0 +1,52 @@
+.light-theme {
+    ---gray-900: #31374a;
+    
+    --body-bg: #f5f7fa;
+    --body-color: #31374a;
+
+    --logo-text-color: #6e7891;
+    --theme-control-toggle-bg-color: rgba(255, 204, 133, 0.24);
+    --theme-control-toggle-hover-bg-color: #e5780b;
+    --theme-control-toggle-color: #e5780b;
+    --theme-control-toggle-hover-color: #fff6e0;
+    --input-border-color: #cbd0dd;
+
+    --navbar-top-bg-color: #fff;
+    --navbar-top-link-color: var(--gray-900);
+    --navbar-top-menu-bg-color: #fff;
+    --navbar-top-border-color: #cbd0dd;
+    --navbar-top-link-hover-color: #222834;
+    --navbar-top-link-hover-bg: #eff2f6;
+    // --navbar-top-link-active-color: var(--primary);
+    
+    // --navbar-top-link-active-color: var(--primary);
+
+    --input-bg: #fff;
+    --input-border-color: #cbd0dd;
+
+    --dropdown-color: #525b75;
+    --dropdown-bg: #fff;
+    --dropdown-hover-bg: #eff2f6;
+    --dropdown-border-color: #cbd0dd;
+    --dropdown-divider-bg: #cbd0dd;
+    --dropdown-link-color: #525b75;
+    --dropdown-link-hover-color: #292e3b;
+    --dropdown-link-hover-bg: #e3e6ed;
+    --dropdown-link-active-color: #000000;
+    --dropdown-link-active-bg: #3874ff;
+    --dropdown-link-disabled-color: #eff2f6;
+    --dropdown-header-color: #6e7891;
+
+    --filter-panel-bg: #f5f7fa;
+    --filter-panel-border: #cbd0dd;
+
+    .text-500 {
+        color: rgb(138, 148, 173);
+    }
+    .text-900 {
+        color: rgb(49, 55, 74)
+    }
+    .text-1100 {
+        color: rgb(20, 24, 36);
+    }
+}

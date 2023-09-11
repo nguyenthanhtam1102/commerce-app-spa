@@ -1,0 +1,31 @@
+@import '../../themes/LightTheme.scss';
+@import '../../themes/DarkTheme.scss';
+
+.header {
+
+    .logo-text {
+        font-size: 1.63625rem;
+        color: var(--logo-text-color);
+        font-weight: 600;
+        letter-spacing: -0.04rem;
+        margin-bottom: 0;
+    }
+
+    .search-box {
+        border: 1px solid var(--input-border-color);
+        background-color: var(--input-bg);
+
+        .btn-search {
+            border-left: 1px solid var(--input-border-color);
+        }
+    }
+
+    .navbar {
+        background-color: var(--navbar-top-bg-color);
+    }
+}
+
+// .search-box {
+//     border: 1px solid var(--input-border-color);
+//     border-radius: 9999px;
+// }

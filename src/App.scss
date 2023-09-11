@@ -1,0 +1,7 @@
+@import './themes/LightTheme.scss';
+@import './themes/DarkTheme.scss';
+
+.App {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+}
