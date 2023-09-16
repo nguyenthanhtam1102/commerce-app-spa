@@ -1,0 +1,35 @@
+.product-manager {
+    .search-box {
+        .search-input {
+            border-style: none;
+            background-color: transparent;
+    
+            &:focus {
+                border-color: inherit;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
+    
+    .pagination {
+        font-size: 0.8rem;
+        font-weight: 500;
+    
+        li {
+            display: inline-block;
+            padding-top: 0.4rem;
+            padding-bottom: 0.4rem;
+            padding-left: 0.9rem;
+            padding-right: 0.9rem;
+            margin-left: 0.4rem;
+        }
+    
+        .selected {
+            background-color: dodgerblue;
+            color: white;
+            border-radius: 0.5rem;
+        }
+    }
+}

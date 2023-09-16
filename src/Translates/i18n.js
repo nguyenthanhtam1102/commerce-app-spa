@@ -1,7 +1,7 @@
 import { I18n } from 'i18n-js';
 import vi from './vi.json';
 import en from './en.json';
-import { LANGUAGE_ENGLISH, LANGUAGE_VIETNAMESE } from '../Constants/constants';
+import { LANGUAGE_ENGLISH, LANGUAGE_VIETNAMESE } from '../constants/Constants';
 
 const i18n = new I18n();
 

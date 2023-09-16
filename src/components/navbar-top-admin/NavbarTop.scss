@@ -1,0 +1,33 @@
+@import '../../themes/LightTheme.scss';
+@import '../../themes/DarkTheme.scss';
+
+.navbar-top {
+  background-color: var(--navbar-top-bg-color) !important;
+  color: var(--navbar-top-link-color);
+
+  .logo-text {
+    color: var(--navbar-top-logo-text-color);
+    font-size: 1.60rem;
+    font-weight: 500;
+  }
+  
+  .btn-switch-light-theme {
+    background-color: #fff3e2;
+    color: #e67b11;
+
+    &:hover {
+      background-color: #e67b11;
+      color: #fff3e2;
+    }
+  }
+
+  .btn-switch-dark-theme {
+    background-color: #1c2e58;
+    color: #85a9ff;
+
+    &:hover {
+      background-color: #85a9ff;
+      color: #1c2e58; 
+    }
+  }
+}

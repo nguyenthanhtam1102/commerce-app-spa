@@ -1,7 +1,7 @@
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product, isLoading }) => {
+const ProductCard = ({ product, isLoading = false }) => {
     if(isLoading) {
         return (
             <div className="relative animate-pulse">

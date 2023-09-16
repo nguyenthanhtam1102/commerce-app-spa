@@ -49,4 +49,53 @@
     .text-1100 {
         color: rgb(20, 24, 36);
     }
+
+    --navbar-top-logo-text-color: #6e7891;
+    --navbar-top-bg-color: #ffffff;
+    --navbar-top-link-color: #31374a;
+    --navbar-top-link-hover-color: #31374a;
+    --navbar-top-link-active-color: #3874ff;
+    --navbar-top-logo-color: #eff2f6;
+    --navbar-top-bg-hover-color: #eff2f6;
+
+    --navbar-vertical-bg-color: white;
+    --navbar-vertical-link-color: #31374a;
+    --navbar-vertical-label-color: #31374a;
+    --navbar-vertical-link-hover-color: #3e465b;
+    --navbar-vertical-link-active-color: #3e465b;
+    --navbar-vertical-link-hover-bg-color: #eff2f6;
+    --navbar-vertical-link-disable-color: #8a94ad;
+    --navbar-vertical-link-icon-color: #9399a9;
+    --navbar-vertical-collapse-menu-bg-color: #ffffff;
+    --navbar-vertical-collapse-menu-border-color: #cbd0dd;
+    --navbar-vertical-border-color: #cbd0dd;
+
+    --body-color: #f5f7fa;
+    --heading-color: #141824;
+    --bg-color: #f5f7fa;
+    --border-color: #e3e6ed;
+
+    --btn-bg-color: #3874ff;
+    --btn-color: #fff;
+    --btn-border-color: rgba(0, 0, 0, 0.25);
+    --btn-hover-bg-color: #004dff;
+    --btn-hover-color: #fff;
+
+    --setting-panel-item-bg-color: #f5f7fa;
+
+    --setting-panel-bg-color: white;
+    --setting-panel-heading-color: #141824;
+    --setting-panel-text-color: #31374a;
+    --setting-panel-toggle-button-bg-color: white;
+    --setting-panel-toggle-button-border-color: #e3e6ed;
+    --setting-panel-toggle-button-color: #6e758b;
+
+    --setting-panel-btn-bg-color: #f5f7fa;
+    --setting-panel-btn-bg-hover-color: #e3e6ed;
+    --setting-panel-btn-color: #31374a;
+    --setting-panel-btn-hover-color: #222834;
+    --setting-panel-btn-border-color: #e3e6ed;
+    --setting-panel-btn-hover-border-color: #e6e9ef;
+
+    --setting-panel-btn-active-border-color: #3874ff;
 }

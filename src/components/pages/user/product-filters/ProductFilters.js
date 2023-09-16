@@ -4,7 +4,7 @@ import { fetchProducts } from "../../../../redux/slices/productsSlice";
 import { fetchCategories } from "../../../../redux/slices/categoriesSlice";
 import ProductCard from "../../../product-card/ProductCart";
 import clsx from "clsx";
-import Pagination from "../../../pagination/Pagination";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import './ProductFilters.scss';
 import { useLocation } from "react-router-dom";
@@ -47,8 +47,10 @@ const ProductFilters = () => {
     );
     const { categories } = useSelector((state) => state.categories);
 
+    const [productList, setProductList] = useState([]);
+
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerRow, setItemsPerRow] = useState(12);
+    const [itemsPerRow, setItemsPerRow] = useState(8);
 
     const [sortOptionsPanelShow, setSortOptionsPanelShow] = useState(false);
     const [sortOptionSelected, setSortOptionSelected] = useState(-1);
@@ -56,8 +58,8 @@ const ProductFilters = () => {
     const [filterPanelShow, setFilterPanelShow] = useState(false);
     const [categoriesFilter, setCategoriesFilter] = useState([]);
 
-    useEffect(() => {
-        dispatch(
+    const fetchMoreData = async () => {
+        const response = await dispatch(
             fetchProducts({
                 limit: itemsPerRow,
                 page: currentPage,
@@ -67,6 +69,27 @@ const ProductFilters = () => {
                 query: searchKey
             })
         );
+
+        setProductList([...productList, ...response.payload.data])
+    }
+
+    const checkHasNextPage = () => {
+        return (pagination && currentPage < pagination?.total_pages)
+    }
+
+    const goToNextPage = () => {
+        if(checkHasNextPage()) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
+    useEffect(() => {
+        fetchMoreData()
+    }, [currentPage]);
+
+    useEffect(() => {
+        setProductList([]);
+        setCurrentPage(1);
     }, [sortOptionSelected, categoriesFilter, searchKey]);
 
     useEffect(() => {
@@ -76,13 +99,6 @@ const ProductFilters = () => {
             })
         );
     }, []);
-
-    const loadingList = useMemo(() => {
-        let result = []
-        for(let i = 0; i < itemsPerRow; i++)
-            result.push(<ProductCard key={i} isLoading={true}/>)
-        return result
-    }, [itemsPerRow])
 
     return (
         <>
@@ -201,38 +217,49 @@ const ProductFilters = () => {
 
                         </div>
                     </div>
-                    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
-                        {loading 
-                            ? loadingList
-                            : (products && products.length > 0 
+                    
+                        {(productList.length > 0 
                                 ?
-                                    products.map((product) => (
-                                        <ProductCard
-                                            key={product.id}
-                                            product={product}
-                                            isLoading={loading}
-                                        />
-                                    ))
+                                <InfiniteScroll
+                                    dataLength={productList.length}
+                                    next={goToNextPage}
+                                    hasMore={checkHasNextPage}
+                                    // loader={(checkHasNextPage() && loadingList)}
+                                    // endMessage={
+                                    // <p style={{ textAlign: 'center' }}>
+                                    //     <b>Yay! You have seen it all</b>
+                                    // </p>
+                                    // }
+                                    
+                                    // refreshFunction={this.refresh}
+                                    // pullDownToRefresh
+                                    // pullDownToRefreshThreshold={50}
+                                    // pullDownToRefreshContent={
+                                    //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+                                    // }
+                                    // releaseToRefreshContent={
+                                    //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+                                    // }
+                                >
+                                    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
+                                        {productList.map((product) => (
+                                                <ProductCard
+                                                    key={product.id}
+                                                    product={product}
+                                                    isLoading={loading}
+                                                />
+                                            ))}
+                                    </div>
+                              </InfiniteScroll>
+                                    
                                 :
-                                    (<div className="col-span-full py-14">
+                                    (!loading && <div className="col-span-full py-14">
                                         <div className="text-2xl font-semibold text-center">
                                             <i className="fa-light fa-box text-6xl mb-3"></i>
                                             <p>Không tìm thấy sản phẩm phù hợp</p>
                                         </div>
                                     </div>) 
                         )}
-                    </div>
-                    <div className="py-5 grid grid-cols-1">
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-                        <div>
-                            
-                        </div>
-                    </div>
                 </div>
             </div>
         </>

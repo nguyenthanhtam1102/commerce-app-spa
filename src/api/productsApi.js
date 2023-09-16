@@ -13,3 +13,13 @@ async (limit, page, sortBy, sortDirection, category_id, query) => {
         throw error;
     }
 }
+
+export const fetchProductApi = 
+async (product_id) => {
+    try {
+        const response = await instance.get(`/products/${product_id}`);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}

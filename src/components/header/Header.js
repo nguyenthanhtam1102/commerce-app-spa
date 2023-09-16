@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import "./Header.scss";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "../../constants/Constants";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
     const { theme, handleSwitchTheme } = useContext(ThemeContext);
@@ -96,11 +96,16 @@ const Header = () => {
                                 </button>
                             )}
                         </div>
-                        <div className="nav-link p-3 text-xl relative">
-                            <i className="fa-regular fa-bag-shopping"></i>
-                            <span className="absolute w-5 h-5 top-0 right-0 text-xs font-semibold bg-blue-500 text-white rounded-full flex items-center justify-center">
-                                0
-                            </span>
+                        <div className="nav-link text-xl flex items-center justify-center">
+                            <Link 
+                                to={'/cart'}
+                                className="relative p-3"
+                            >
+                                <i className="fa-regular fa-bag-shopping"></i>
+                                <span className="absolute w-5 h-5 top-0 right-0 text-xs font-semibold bg-blue-500 text-white rounded-full flex items-center justify-center">
+                                    0
+                                </span>
+                            </Link>
                         </div>
                         <div className="nav-link p-3 text-xl">
                             <i className="fa-regular fa-user"></i>
@@ -118,10 +123,15 @@ const Header = () => {
                     </div>
                     <div className="flex-1">
                         <ul className="flex justify-end gap-9 cursor-pointer">
+                            <li>
+                                <Link to={'/admin/products'}>Admin</Link>
+                            </li>
                             <li>Home</li>
-                            <li>Store</li>
-                            <li>Products</li>
-                            <li>Wishlist</li>
+                            <li>
+                                <Link to={'/product-fitlers'}>Products</Link>
+                            </li>
+                            <li>Contact</li>
+                            <li>About</li>
                             <li>
                                 <div>
                                     More

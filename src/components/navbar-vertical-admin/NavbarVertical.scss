@@ -1,0 +1,25 @@
+@import '../../themes/LightTheme.scss';
+@import '../../themes/DarkTheme.scss';
+
+.navbar-vertical {
+    background-color: var(--navbar-vertical-bg-color);
+    border-right: 1px solid var(--navbar-vertical-border-color);
+}
+
+.navbar-vertical-toggle {
+    color: var(--navbar-vertical-link-color);
+    border-top: 1px solid var(--navbar-vertical-border-color);
+
+    &:hover {
+        color: var(--navbar-vertical-link-hover-color);
+    }
+}
+
+.navbar-collapse::-webkit-scrollbar {
+    display: none;
+}
+  
+.navbar-collapse {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

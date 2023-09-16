@@ -1,0 +1,54 @@
+@import '../../../themes/LightTheme.scss';
+@import '../../../themes/DarkTheme.scss';
+
+.navbar-top-item {
+    color: var(--navbar-top-link-color);
+    cursor: pointer;
+    border-radius: 0.45rem;
+
+    &:hover {
+        color: var(--navbar-top-link-hover-color);
+        background-color: var(--navbar-top-bg-hover-color);
+
+        .navbar-top-collapse-menu {
+            display: block;
+        }
+    }
+
+    .navbar-top-collapse-menu {
+        display: none;
+        background-color: var(--navbar-vertical-collapse-menu-bg-color);
+        border: 1px solid var(--navbar-vertical-collapse-menu-border-color);
+    
+        .navbar-top-collapse-menu-arrow {
+            background-color: var(--navbar-vertical-collapse-menu-bg-color);
+            border-top: 1px solid var(--navbar-vertical-collapse-menu-border-color);
+            border-left: 1px solid var(--navbar-vertical-collapse-menu-border-color);
+        }
+    
+        label {
+            color: var(--navbar-vertical-link-active-color);
+        }
+    
+        .nav-item {   
+            a {
+                color: var(--navbar-vertical-link-color);
+                background-color: var(--navbar-vertical-collapse-menu-bg-color);
+                padding-left: 1rem;
+            }
+    
+            &:hover {
+                background-color: var(--navbar-vertical-link-hover-bg-color);
+    
+                a {
+                    color: var(--navbar-vertical-link-hover-color);
+                    background-color: var(--navbar-vertical-link-hover-bg-color);
+                }
+            }
+        }
+    
+        &:hover {
+            display: block;
+        }
+    }
+}

@@ -1,9 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { fetchProductsApi } from "../../api/productsApi";
+import { 
+    fetchProductsApi,
+    fetchProductApi
+} from "../../api/productsApi";
 
 const initState = {
     products: [],
+    product: null,
     pagination: null,
     loading: false,
     error: false,
@@ -21,6 +25,18 @@ export const fetchProducts = createAsyncThunk(
     }
 );
 
+export const fetchProduct = createAsyncThunk(
+    "products/fetchProduct",
+    async (product_id) => {
+        try {
+            const response = await fetchProductApi(product_id);
+            return response?.data;
+        } catch(error) {
+            throw error;
+        }
+    }
+);
+
 const productSlice = createSlice({
     name: "products",
     initialState: initState,
@@ -30,6 +46,8 @@ const productSlice = createSlice({
             .addCase(fetchProducts.pending, (state) => {
                 state.loading = true;
                 state.error = null;
+                state.products = [];
+                state.pagination = null;
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.loading = false;
@@ -37,6 +55,20 @@ const productSlice = createSlice({
                 state.pagination = action.payload?.meta.pagination;
             })
             .addCase(fetchProducts.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+
+            .addCase(fetchProduct.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.product = null;
+            })
+            .addCase(fetchProduct.fulfilled, (state, action) => {
+                state.loading = false;
+                state.product = action.payload;
+            })
+            .addCase(fetchProduct.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
