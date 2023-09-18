@@ -79,7 +79,7 @@ const ProductManager = () => {
                 <h2 className="text-3xl font-semibold py-5">Products</h2>
             </div>
             <div>
-                <div className="flex bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex rounded-lg p-4 shadow-sm">
                     <div className="flex-1 flex">
                         <div className="search-box w-96 flex rounded-lg border border-slate-300 text-black search-box items-center px-4 py-2">
                             <input
@@ -93,10 +93,10 @@ const ProductManager = () => {
                             />
                         </div>
 
-                        <SelectGroup
+                        {/* <SelectGroup
                             className={`text-gray-600 text-sm`} 
                             options={categories.map(category => category.name)}
-                        />
+                        /> */}
                     </div>
                     <div className="justify-items-end">
                         <button
@@ -127,7 +127,7 @@ const ProductManager = () => {
             <div>
                 <ProductList data={productList} isLoading={isLoading} loadingList={loadingList}/>
 
-                <div className="grid grid-cols-3 bg-white text-gray-500 p-5 rounded-lg mt-5 shadow-md">
+                <div className="grid grid-cols-3 p-5 rounded-lg mt-5 shadow-md">
                     <div className="text-sm flex items-center">
                         <label className="mb-0 mr-3">Row per page</label>
                         <select

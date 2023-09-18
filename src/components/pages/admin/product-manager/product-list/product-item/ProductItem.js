@@ -1,9 +1,11 @@
 import { Box, Modal } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteProduct } from "../../../../../../redux/slices/productsSlice";
 import { useSelector } from "react-redux";
+import { DARK_THEME } from "../../../../../../constants/Constants";
+import { ThemeContext } from "../../../../../../themes/ThemeContext";
 
 const ProductItem = (props) => {
     const { data, isLoading } = props;
@@ -15,9 +17,16 @@ const ProductItem = (props) => {
             dispatch(deleteProduct(data.id));
         }
     }
+
+    const theme = useContext(ThemeContext);
+
+    const colorTheme = theme.theme.colorTheme;
+
     return (
         <>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <tr class={` border-b   
+                ${colorTheme === DARK_THEME ? 'bg-gray-800 border-gray-700 hover:bg-gray-600 text-gray-100' : ' bg-gray-50 text-gray-700'}
+            `}>
                 {isLoading ? (
                     <>
                         <td className="w-4"></td>
