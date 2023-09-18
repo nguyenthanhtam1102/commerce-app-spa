@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from "react";
 import { ThemeContext } from "./themes/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "./constants/Constants";
+import AddProductPage from "./components/pages/admin/product-manager/product-page/AddProductPage";
 
 function App() {
     const {theme} =  useContext(ThemeContext);
@@ -29,14 +30,14 @@ function App() {
                 <Routes>
                     <Route path="/" element={<UserPage />}>
                         <Route index element={<HomePage />} />
-                        <Route path="/product-filters" element={<ProductFilters />}/>
+                        <Route path="/product-fitlers" element={<ProductFilters />}/>
                         <Route path="/products/:id" element={<ProductDetails />}/>
                         <Route path="/cart" element={<CartPage />} />
                     </Route>
                     <Route path="/admin" element={<AdminPage />}>
                         <Route path="/admin/products" element={<ProductManager />}/>
                         <Route path="/admin/products/:id" element={<ProductPage />}/>
-                        <Route path="/admin/products/add" element={<ProductPage />}/>
+                        <Route path="/admin/products/add" element={<AddProductPage />}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

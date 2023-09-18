@@ -1,0 +1,11 @@
+.image-picker-item {
+    .image-picker-item-eclipse {
+        display: none;
+    }
+
+    &:hover {
+        .image-picker-item-eclipse {
+            display: block;
+        }
+    }
+}

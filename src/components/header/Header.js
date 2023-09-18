@@ -20,7 +20,7 @@ const Header = () => {
 
     const search = () => {
         if(searchText.trim() !== '') {
-            navigate(`/product-filters?key=${encodeURIComponent(searchText)}`)
+            navigate(`/product-fitlers?key=${encodeURIComponent(searchText)}`)
         }
     }
 

@@ -70,7 +70,11 @@ const ProductFilters = () => {
             })
         );
 
-        setProductList([...productList, ...response.payload.data])
+        try {
+            setProductList([...productList, ...response.payload.data])
+        } catch(ex) {
+
+        }
     }
 
     const checkHasNextPage = () => {
@@ -89,7 +93,11 @@ const ProductFilters = () => {
 
     useEffect(() => {
         setProductList([]);
-        setCurrentPage(1);
+
+        if(currentPage === 1)
+            fetchMoreData();
+        else
+            setCurrentPage(1);
     }, [sortOptionSelected, categoriesFilter, searchKey]);
 
     useEffect(() => {

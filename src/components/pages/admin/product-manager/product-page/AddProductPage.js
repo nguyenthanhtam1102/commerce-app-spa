@@ -1,23 +1,23 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import clsx from "clsx";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-import { fetchProduct } from "../../../../../redux/slices/productsSlice";
+import { createProduct, fetchProduct, setAssetsForProduct } from "../../../../../redux/slices/productsSlice";
 import CustomCheckbox from "../../../../checkbox/custom-checkbox/CustomCheckbox";
 import { fetchCategories } from "../../../../../redux/slices/categoriesSlice";
 import { convertFileToBase64 } from "../../../../../Utils/FileUtils";
 import { createNewAsset } from "../../../../../redux/slices/assetsSlice";
 import ProductGroupModal from "./ProductGroupModal";
+import { toast } from "react-toastify";
 
 
-const ProductPage = () => {
-    const { id } = useParams();
-
-    const { product, loading, error } = useSelector((state) => state.products);
+const AddProductPage = () => {
+    const navigate = useNavigate();
+    const { product, createStatus, loading, error } = useSelector((state) => state.products);
     const allCategories = useSelector((state) => state.categories.categories);
     const allCategoriesLoading = useSelector(
         (state) => state.categories.loading
@@ -28,6 +28,8 @@ const ProductPage = () => {
     const assetAdded = useSelector((state) => state.assets.asset);
     const assetAdding = useSelector((state) => state.assets.loading);
     const assetAddError = useSelector((state) => state.assets.error);
+
+    const inputFile = useRef();
 
     const dispatch = useDispatch();
 
@@ -123,6 +125,8 @@ const ProductPage = () => {
                 })
             );
         }
+
+        inputFile.current.value = '';
     };
 
     const handleDeleteAssets = (asset) => {
@@ -147,23 +151,49 @@ const ProductPage = () => {
         setEditGroupModalShow(false);
     }
 
-    useEffect(() => {
-        if (id) {
-            dispatch(fetchProduct(id));
-        }
+    const handleSaveProduct = () => {
+        console.log('dispatch react product', categories)
+        dispatch(createProduct({
+            name: name, 
+            price: price, 
+            description: description, 
+            inventory: quantity, 
+            categories: [{category_id: "cat_0YnEoqg61le7P6"}], 
+            active: true
+        }))
+    }
 
+    useEffect(() => {
         dispatch(fetchCategories({}));
     }, []);
 
     useEffect(() => {
-        if (product) {
-            console.log(product);
+        if (createStatus === 201) {
             setName(product.name);
             setDescription(product.description);
             setPrice(product.price.raw);
             setQuantity(product.inventory.available);
             setAssets(product.assets);
             setCategories(product.categories);
+
+            toast.info('Save product thành công')
+
+            console.log('assets', assets.map((asset, index) => {
+                return {
+                    id: asset.id
+                }
+            }))
+
+            dispatch(setAssetsForProduct({
+                productId: product.id,
+                assets:  assets.map((asset, index) => {
+                    return {
+                        id: asset.id
+                    }
+                })
+            }))
+
+            navigate(`/admin/products/${product.id}`)
 
             if(product.variant_groups) {
                 setGroups(product.variant_groups.map(group => {
@@ -175,7 +205,7 @@ const ProductPage = () => {
                 }));
             }
         }
-    }, [product]);
+    }, [createStatus]);
 
     useEffect(() => {
         if (assetAdded) {
@@ -199,7 +229,10 @@ const ProductPage = () => {
                     <button className="px-4 py-2 border rounded-md bg-transparent ml-2">
                         Cancel
                     </button>
-                    <button className="px-4 py-2 rounded-md bg-blue-500 text-white ml-2">
+                    <button 
+                        className="px-4 py-2 rounded-md bg-blue-500 text-white ml-2"
+                        onClick={handleSaveProduct}    
+                    >
                         Save Product
                     </button>
                 </div>
@@ -222,6 +255,7 @@ const ProductPage = () => {
                                 className="w-full px-4 py-2 rounded-md border outline-none"
                                 placeholder="Enter product name"
                                 value={name}
+                                onBlur={() => checkProductName(name)}
                                 onChange={handleInputNameChange}
                             />
                         </div>
@@ -288,6 +322,7 @@ const ProductPage = () => {
                                     Choose Image
                                 </label>
                                 <input
+                                    ref={inputFile}
                                     id="input-assets"
                                     type="file"
                                     hidden
@@ -670,4 +705,4 @@ const ProductPage = () => {
     );
 };
 
-export default ProductPage;
+export default AddProductPage;

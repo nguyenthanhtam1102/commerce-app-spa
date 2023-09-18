@@ -12,6 +12,10 @@ const AdminPage = () => {
         return (
             [
                 {
+                    name: i18n.t("home"),
+                    icon: <Link to={'/'}><i class="fa-regular fa-house"></i></Link>,
+                },
+                {
                     name: i18n.t("dashboard"),
                     icon: <i className="fa-regular fa-chart-pie"></i>,
                 },

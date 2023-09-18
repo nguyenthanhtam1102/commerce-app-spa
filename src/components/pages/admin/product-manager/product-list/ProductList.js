@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductItem from "./product-item/ProductItem";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const ProductList = (props) => {
-  const { data, isLoading } = props;
+  const { data, isLoading, loadingList } = props;
   // const [selectedList, setSelectedList] = useState(
   //   data.map(item => {return {id: item.id, checked: false}})
   // )
@@ -46,9 +48,13 @@ const ProductList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {data && data.map((item) => <ProductItem key={item.id} data={item} isLoading={isLoading}/>)}
+          {isLoading
+          ? loadingList
+          : data && data.map((item) => <ProductItem key={item.id} data={item} isLoading={isLoading}/>)}
+          
         </tbody>
       </table>
+
     </div>
   );
 };
